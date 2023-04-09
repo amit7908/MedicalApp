@@ -377,42 +377,62 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <!--End Section Tittle  -->
-                        <form id="contact-form" action="#" method="POST">
+                        <form id="contact-form" action="/admin/addAppointment" method="POST">
+                            <%if(message1.length>0){%>
+                                <div class="alert alert-success" role="alert">
+                                  <%=message1%>
+                                </div>
+                                <%}%>
+                                  <%if(message2.length>0){%>
+                                    <div class="alert alert-danger" role="alert">
+                                      <%=message2%>
+                                    </div>
+                                    <%}%>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-box user-icon mb-30">
-                                        <input type="text" name="name" placeholder="Name">
+                                        <input type="text" name="name" required placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-box email-icon mb-30">
-                                        <input type="text" name="email" placeholder="Phone">
+                                        <input type="text" name="phone" required placeholder="Phone">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 mb-30">
-                                    <div class="select-itms">
-                                        <select name="select" id="select2">
-                                            <option value="">Health Law</option>
-                                            <option value="">saiful islam</option>
-                                            <option value="">Arafath Miya</option>
-                                            <option value="">Shakil Miya</option>
-                                            <option value="">Tamim Sharker</option>
+                                    <div class="">
+                                        <label for="selectDepartment" class="mr-10">Select Department</label>
+                                        <select name="department" id="select" class="selectpicker" required  title="Choose one of the following...">
+                                            <option value="Dentist">Dentistry</option>
+                                            <option value="Cardiologist">Cardiology</option>
+                                            <option value="ENT">ENT Specialist</option>
+                                            <option value="Orthopedic">Orthopedic</option>
+                                            <option value="Neurologist">Neurology</option>
+                                            <option value="Medicine">Medicine</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-box subject-icon mb-30">
-                                        <input type="Email" name="subject" placeholder="Email">
+                                        <input type="email" name="email" required placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-box message-icon mb-65">
-                                        <textarea name="message" id="message" placeholder="Message"></textarea>
+                                        <textarea name="message" id="message" required placeholder="Message"></textarea>
                                     </div>
+                                    <%if(loginData.isLogedin){%>
                                     <div class="submit-info">
                                         <button class="btn" type="submit">Submit Now <i class="ti-arrow-right"></i> </button>
                                     </div>
+                                    <%}else{%>
+                                        <div class="">
+                                            <button class="btn about-btn2" type="button">Submit Now <i class="ti-arrow-right"></i> </button>
+                                        </div>
+                                        <h3>You have to login before booking an appointment</h3>
+                                        <%}%>
                                 </div>
                             </div>
                         </form>

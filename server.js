@@ -8,14 +8,17 @@ const bodyParser = require("body-parser");
 const userAuth = require("./middleware/userAuth");
 const adminAuth = require("./middleware/adminAuth");
 const path =require("path")
+const nodeNotifier = require("node-notifier");
+const methodOverride = require('method-override');
 require("dotenv").config();
 
 const app = express();
-
+// app.use(require('connect').bodyParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(flash());
-app.use(cookieParser());
+app.set(nodeNotifier.notify())
+app.use(cookieParser())
 app.use(session({
     secret:"amit",
     cookie:{
@@ -27,6 +30,7 @@ app.use(session({
 
 app.set('view engine','ejs');
 app.set("views","views");
+app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,"public")))
 
 app.use(userAuth.authUserJwt);
@@ -35,6 +39,7 @@ app.use(adminAuth.authAdiminJwt);
 const userRoute = require("./routes/userRoutes");
 app.use(userRoute);
 const adminRoute = require("./routes/adminRoutes");
+// const nodeNotifier = require("node-notifier");
 app.use("/admin",adminRoute);
 
 const port = process.env.PORT 

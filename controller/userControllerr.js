@@ -1,4 +1,5 @@
 const User = require("../model/userModel");
+const Doctor = require("../model/doctorModel")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
@@ -16,7 +17,9 @@ const home = (req, res) => {
   res.render("./user/index",{
     title:"about page",
     data:User.find(),
-    loginData:loginData
+    loginData:loginData,
+    message1: req.flash("message1"),
+    message2: req.flash("message2"),
 })
 };
 const about=(req,res)=>{
@@ -31,15 +34,17 @@ const about=(req,res)=>{
   })
   
 };
-const doctor = (req, res) => {
+const doctor = async(req, res) => {
   const loginData = {};
+  const doctorData = await Doctor.find()
   if(req.cookies.isLogedin){
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
   res.render("./user/doctor", {
     title: "doctor page",
     data: User.find(),
-    loginData:loginData
+    loginData:loginData,
+    doctorData: doctorData
   })
 }
 const blog = (req, res) => {
@@ -81,14 +86,23 @@ const contact=(req, res)=>{
 }
 
 
-const department = (req,res)=>{
+const department = async(req,res)=>{
   const loginData = {};
+  const department = req.params.category
+  const doctordata = await Doctor.aggregate([
+    {
+      $match:{
+        department:`${department}`
+      }
+    }
+  ])
   if(req.cookies.isLogedin){
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
-              res.render("./user/department", {
+              res.render("./user/doc_department", {
                 data: req.user,
-                loginData:loginData
+                loginData:loginData,
+                doctordata:doctordata
               });
             
 };
@@ -273,6 +287,11 @@ const logout = (req, res) => {
   res.clearCookie("isLogedin");
   res.redirect("/");
 };
+
+
+
+
+
 
 module.exports = {
   home,
