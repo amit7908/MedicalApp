@@ -8,8 +8,9 @@ const tokenModel = require("../model/tokenModel");
 const crypto = require("crypto");
 const { log } = require("console");
 
-const home = (req, res) => {
+const home = async(req, res) => {
   const loginData = {};
+  const doctorData = await Doctor.find().limit(3)
   if(req.cookies.isLogedin){
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
@@ -18,6 +19,7 @@ const home = (req, res) => {
     title:"about page",
     data:User.find(),
     loginData:loginData,
+    doctorData:doctorData,
     message1: req.flash("message1"),
     message2: req.flash("message2"),
 })

@@ -44,7 +44,11 @@ router.get("/dashboard",utils.authAdmin,aController.admin_dashboard);
 router.get("/logout",aController.admin_logout);
 router.get("/doctors",utils.authAdmin,aController.doctor);
 router.post("/addDoctor",upload.single('image'),aController.addDoctor);
+
 router.get("/edit_doctor/:id",utils.authAdmin,aController.editDoctor);
+
+router.get("/edit_doctor/:id",aController.editDoctor);
+
 router.post("/doctor/update/:id",upload.single('image'),aController.updateDoctor);
 router.get("/doctor/delete/:id",aController.deleteDoctor)
 

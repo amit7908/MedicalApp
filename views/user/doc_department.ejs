@@ -7,7 +7,9 @@
     <title> Medical HTML-5 Template </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <base href="/">
+
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
@@ -76,17 +78,23 @@
                         <div class="depart_ment_tab mb-30">
                             <!-- Tabs Buttons -->
                             <ul class="nav" id="myTab" role="tablist">
+
                                 <li class="">
                                     <a class="nav-link" 
                                         href="/doctor/department/Dentist" 
                                          data-category="Dentist">
+                       
+
                                         <i class="flaticon-teeth"></i>
                                         <h4>Dentistry</h4>
                                     </a>
                                 </li>
+
                                 <li class="">
                                     <a class="nav-link" 
                                         href="/doctor/department/Cardiologist"  data-category="Cardiologist">
+
+
                                         <i class="flaticon-cardiovascular"></i>
                                         <h4>Cardiology</h4>
                                     </a>
@@ -98,27 +106,33 @@
                                         <h4>ENT Specialists</h4>
                                     </a>
                                 </li>
-                                <li >
-                                    <a class="nav-link"
-                                        href="/doctor/department/Physian"  data-category="Physian">
-                                        <i class="flaticon-bone"></i>
-                                        <h4>General Physian</h4>
+                                <li class="">
+                                    <a class="nav-link" 
+                                        href="/doctor/department/Orthopedic"  data-category="Cardiologist">
+
+
+                                        <i class="flaticon-cardiovascular"></i>
+                                        <h4>Orthopedic</h4>
                                     </a>
                                 </li>
-                                <li >
+
+                                
+
+                                <li>
                                     <a class="nav-link"
                                         href="/doctor/department/Neurologist"  data-category="Neurologist">
-                                        <i class="flaticon-lung"></i>
+                                        <i class="flaticon-cell"></i>
                                         <h4>Neurology</h4>
-                                    </a>
                                 </li>
-                                <li >
+                                <li>
                                     <a class="nav-link"
-                                        href="/doctor/department/Medicine"  data-category="Medicine">
+                                        href="/doctor/department/Medicine"  data-category="Neurologist">
                                         <i class="flaticon-cell"></i>
                                         <h4>Medicine</h4>
-                                    </a>
                                 </li>
+
+                                
+                                
                             </ul>
                         </div>
                     </div>
@@ -164,8 +178,10 @@
                         </div>
                     </div>
                 </div>
+
             </div> 
         </div>
+
                 <!-- department area_end  -->
     </main>
     <footer>
@@ -257,7 +273,11 @@
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
     <!--ajax -->
-    <script>
+
+    
+
+    <!-- <script>
+
         $(document).ready(function () {
             // When a tab is clicked
             $('a.nav-link').on('click', function (e) {
@@ -267,7 +287,11 @@
                 // Fetch the doctors for that category using an AJAX request
                 $.ajax({
                     type: 'GET',
+
                     url: '/department'+category,
+
+                    url: '/department',
+
                     data: { category: category },
                     success: function (doctordata) {
                         // Render the doctors using EJS
@@ -277,7 +301,11 @@
                     },
                 })
             })
+
             })</script>
+
+            
+
 
     <!-- JS here -->
 
@@ -319,5 +347,4 @@
     <script src="./assets/js/main.js"></script>
 
 </body>
-
 </html>

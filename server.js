@@ -17,7 +17,9 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(flash());
+
 app.set(nodeNotifier.notify())
+
 app.use(cookieParser())
 app.use(session({
     secret:"amit",
