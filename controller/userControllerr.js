@@ -6,6 +6,9 @@ const utils = require("../utils/utils");
 const tokenModel = require("../model/tokenModel");
 const crypto = require("crypto");
 const { log } = require("console");
+const About = require("../model/aboutModel");
+const { request } = require("http");
+const camp = require("../model/CampgalleryModel")
 
 const home = (req, res) => {
   const loginData = {};
@@ -19,15 +22,19 @@ const home = (req, res) => {
     loginData:loginData
 })
 };
-const about=(req,res)=>{
+const about=async(req,res)=>{
   const loginData = {};
+  const testimonidata = await About.find()
+  const campdata = await camp.find()
   if(req.cookies.isLogedin){
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
   res.render("./user/about",{
     title:"about page",
     data:User.find(),
-    loginData:loginData
+    loginData:loginData,
+    testimonidata:testimonidata,
+    campdata:campdata
   })
   
 };
