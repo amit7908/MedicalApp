@@ -8,20 +8,22 @@ const tokenModel = require("../model/tokenModel");
 const crypto = require("crypto");
 const { log } = require("console");
 
-const home = async (req, res) => {
-  const loginData = {};
-  const drData= await Doctor.find()
-  if (req.cookies.isLogedin) {
 
+const home = async(req, res) => {
+  const loginData = {};
+  const doctorData = await Doctor.find().limit(3)
+  if(req.cookies.isLogedin){
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
 
-  res.render("./user/index", {
-    title: "about page",
-    data: User.find(),
-    loginData: loginData,
-    doctorData: drData
-  })
+  res.render("./user/index",{
+    title:"about page",
+    data:User.find(),
+    loginData:loginData,
+    doctorData:doctorData,
+    message1: req.flash("message1"),
+    message2: req.flash("message2"),
+})
 };
 
 const about = (req, res) => {
@@ -37,19 +39,23 @@ const about = (req, res) => {
 
 };
 
+
 const doctor = async (req, res) => {
   const loginData = {};
   const drData = await Doctor.find()
   if (req.cookies.isLogedin) {
+
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
   res.render("./user/doctor", {
     title: "doctor page",
     data: User.find(),
+
     loginData: loginData,
-    doctorData: drData
+    doctorData: drData,
   })
-}
+};
+
 
 const blog = (req, res) => {
   const loginData = {};
@@ -183,6 +189,7 @@ const appointment = (req, res) => {
     loginData: loginData
   })
 }
+
 
 
 const department = async (req, res) => {
@@ -388,6 +395,11 @@ const logout = (req, res) => {
   res.redirect("/");
 };
 
+
+
+
+
+
 module.exports = {
   home,
   about,
@@ -408,6 +420,5 @@ module.exports = {
   login,
   loginCreate,
   logout,
-  confirmaton,
-  // signin_signup
+  confirmaton
 };

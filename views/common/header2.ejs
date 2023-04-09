@@ -1,60 +1,66 @@
-<!--? Header Start -->
-<div class="header-area">
-    <div class="main-header header-sticky">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <!-- Logo -->
-                <div class="col-xl-2 col-lg-2 col-md-1">
-                    <div class="logo">
-                        <a href="/"><img src="assets/img/logo/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-xl-10 col-lg-10 col-md-10">
 
-                    <!-- Main-menu -->
-
-                    <div class="menu-main d-flex align-items-center justify-content-end">
-                        <!-- Main-menu -->
-                        <div class="main-menu f-right d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="/about">About</a></li>
-                                    <li><a href="/doctor">Doctor</a></li>
-                                    <li><a href="/doctor/department/Dentist">Department</a></li>
-                                    <li><a href="/blog">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="/blog">Blog</a></li>
-                                            <li><a href="/blog_detail">Blog Details</a></li>
-
-                                        </ul>
-                                    </li>
-                                    <li><a href="/contact">Contact</a></li>
-                                </ul>
-                            </nav>
+    <!--? Header Start -->
+    <div class="header-area">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-xl-2 col-lg-2 col-md-1">
+                        <div class="logo">
+                            <a href="/"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
-                        <%if(Boolean(loginData.isLogedin)){%>
-                            <div class="header-right-btn f-right d-none d-lg-block ml-30">
-
-                                <a href="/logout" class="btn header-btn">logout</a>
-                            </div>
-
-                            <%}else{%>
-                                <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                                    <a href="/login" class="btn header-btn">Login</a>
-
-                                </div>
-                                <%}%>
-
                     </div>
-
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
+                    <div class="col-xl-10 col-lg-10 col-md-10">
+                        
+                            <!-- Main-menu -->
+                            
+                                <div class="menu-main d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu f-right d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                <li><a href="/">Home</a></li>
+                                                <li><a href="/about">About</a></li>
+                                                <li><a href="/doctor">Doctor</a></li>
+                                                <li><a href="/doctor/department/Dentist">Department</a></li>
+                                                <li><a href="/blog">Blog</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="/blog">Blog</a></li>
+                                                        <li><a href="/blog_detail">Blog Details</a></li>
+                                                        
+                                                    </ul>
+                                                </li>
+                                                <li><a href="/contact">Contact</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <%if(Boolean(loginData.isLogedin)){%>
+                                        <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                            
+                                            <a href="/logout" class="btn header-btn">logout</a>
+                                        </div>
+                                        
+                                        <%}else{%>
+                                            <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                                <a href="/login" class="btn header-btn">LogIn</a>
+                                                
+                                            </div>
+                                            <%}%>
+                                    
+                                    
+                                </div>
+                                
+                                   
+                                        
+                                       
+                        
+                    </div>   
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Header End
+    <!-- Header End

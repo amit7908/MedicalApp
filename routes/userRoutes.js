@@ -31,6 +31,9 @@ router.post('/login/create',uController.loginCreate);
 router.get('/logout',uController.logout);
 router.get("/confirmation/:email/:token",uController.confirmaton);
 
+//appointment routes 
+
+
 
 // router.get('/signin_signup',uController.signin_signup);
 
