@@ -1,4 +1,5 @@
 const User = require("../model/userModel");
+const Doctor = require("../model/doctorModel")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
@@ -7,101 +8,213 @@ const tokenModel = require("../model/tokenModel");
 const crypto = require("crypto");
 const { log } = require("console");
 
-const home = (req, res) => {
+const home = async (req, res) => {
   const loginData = {};
-  if(req.cookies.isLogedin){
+  const drData= await Doctor.find()
+  if (req.cookies.isLogedin) {
+
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
 
-  res.render("./user/index",{
-    title:"about page",
-    data:User.find(),
-    loginData:loginData
-})
+  res.render("./user/index", {
+    title: "about page",
+    data: User.find(),
+    loginData: loginData,
+    doctorData: drData
+  })
 };
-const about=(req,res)=>{
+
+const about = (req, res) => {
   const loginData = {};
-  if(req.cookies.isLogedin){
+  if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
-  res.render("./user/about",{
-    title:"about page",
-    data:User.find(),
-    loginData:loginData
+  res.render("./user/about", {
+    title: "about page",
+    data: User.find(),
+    loginData: loginData
   })
-  
+
 };
-const doctor = (req, res) => {
+
+const doctor = async (req, res) => {
   const loginData = {};
-  if(req.cookies.isLogedin){
+  const drData = await Doctor.find()
+  if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
   res.render("./user/doctor", {
     title: "doctor page",
     data: User.find(),
-    loginData:loginData
+    loginData: loginData,
+    doctorData: drData
   })
 }
+
 const blog = (req, res) => {
   const loginData = {};
-  if(req.cookies.isLogedin){
+  if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
   res.render('./user/blog', {
     title: "blog page",
     data: User.find(),
-    loginData:loginData
+    loginData: loginData
   })
 }
 
-const blog_detail=(req, res)=>{
+const blog_detail = (req, res) => {
   const loginData = {};
-  if(req.cookies.isLogedin){
+  if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
   res.render('./user/blog_detail', {
     title: "blog_detail page",
     data: User.find(),
-    loginData:loginData
+    loginData: loginData
   })
 }
 
 
-
-const contact=(req, res)=>{
+const contact = (req, res) => {
   const loginData = {};
-  if(req.cookies.isLogedin){
+  if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
-  res.render('./user/contact',{
-    tittle:"contact page",
+  res.render('./user/contact', {
+    tittle: "contact page",
     data: User.find(),
-    loginData:loginData
+    loginData: loginData
+  })
+}
+
+// const signin_signup = (req, res) => {
+//   const loginData = {};
+//   if (req.cookies.isLogedin) {
+//     loginData.isLogedin = req.cookies.isLogedin || undefined;
+//   }
+//   res.render('./user/signin_signup', {
+//     tittle: "signin_signup page",
+//     data: User.find(),
+//     loginData: loginData
+//   })
+// }
+
+const dentistry = (req, res) => {
+  const loginData = {};
+  if (req.cookies.isLogedin) {
+    loginData.isLogedin = req.cookies.isLogedin || undefined;
+  }
+  res.render('./user/dentistry', {
+    tittle: "dentistry page",
+    data: User.find(),
+    loginData: loginData
+  })
+}
+
+const cardiology = (req, res) => {
+  const loginData = {};
+  if (req.cookies.isLogedin) {
+    loginData.isLogedin = req.cookies.isLogedin || undefined;
+  }
+  res.render('./user/cardiology', {
+    tittle: "cardiology page",
+    data: User.find(),
+    loginData: loginData
+  })
+}
+
+const ent_specialist = (req, res) => {
+  const loginData = {};
+  if (req.cookies.isLogedin) {
+    loginData.isLogedin = req.cookies.isLogedin || undefined;
+  }
+  res.render('./user/ent', {
+    tittle: "ent_specialist page",
+    data: User.find(),
+    loginData: loginData
+  })
+}
+
+const orthopedic = (req, res) => {
+  const loginData = {};
+  if (req.cookies.isLogedin) {
+    loginData.isLogedin = req.cookies.isLogedin || undefined;
+  }
+  res.render('./user/orthopedic', {
+    tittle: "orthopedic page",
+    data: User.find(),
+    loginData: loginData
+  })
+}
+
+const neuro = (req, res) => {
+  const loginData = {};
+  if (req.cookies.isLogedin) {
+    loginData.isLogedin = req.cookies.isLogedin || undefined;
+  }
+  res.render('./user/neuroanatomy', {
+    tittle: "neuroanatomy page",
+    data: User.find(),
+    loginData: loginData
+  })
+}
+
+const medicine = (req, res) => {
+  const loginData = {};
+  if (req.cookies.isLogedin) {
+    loginData.isLogedin = req.cookies.isLogedin || undefined;
+  }
+  res.render('./user/medicine', {
+    tittle: "medicine page",
+    data: User.find(),
+    loginData: loginData
+  })
+}
+
+const appointment = (req, res) => {
+  const loginData = {};
+  if (req.cookies.isLogedin) {
+    loginData.isLogedin = req.cookies.isLogedin || undefined;
+  }
+  res.render('./user/appointment_form', {
+    tittle: "appointment page",
+    data: User.find(),
+    loginData: loginData
   })
 }
 
 
-const department = (req,res)=>{
+const department = async (req, res) => {
   const loginData = {};
-  if(req.cookies.isLogedin){
+  const department = req.params.category
+  const doctordata = await Doctor.aggregate([
+    {
+      $match: {
+        department: `${department}`
+      }
+    }
+  ])
+  if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
-              res.render("./user/department", {
-                data: req.user,
-                loginData:loginData
-              });
-            
+  res.render("./user/doc_department", {
+    data: req.user,
+    loginData: loginData,
+    doctordata: doctordata
+  });
+
 };
 
 const register = (req, res) => {
   const loginData = {};
-  if(req.cookies.isLogedin){
+  if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
   }
   res.render("./user/register", {
     data: User.find(),
     message2: req.flash("message2"),
-    loginData:loginData
+    loginData: loginData
   });
 };
 
@@ -153,6 +266,7 @@ const registerCreate = (req, res) => {
       res.redirect("/register");
     });
 };
+
 const confirmaton = (req, res) => {
   tokenModel
     .findOne({ token: req.params.token })
@@ -229,7 +343,7 @@ const loginCreate = (req, res) => {
             console.log("login successfull", data);
             res.redirect("/");
           } else {
-            req.flash("message2", "Incorrect password");
+            req.flash("message2", "Incorrect email or password..!");
             res.redirect("/login");
           }
         } else {
@@ -239,7 +353,7 @@ const loginCreate = (req, res) => {
       } else {
         req.flash(
           "message2",
-          "No user found please try with anothe email or register first"
+          "Incorrect email or password..!"
         );
         res.redirect("/login");
       }
@@ -282,10 +396,18 @@ module.exports = {
   blog_detail,
   contact,
   department,
+  dentistry,
+  cardiology,
+  ent_specialist,
+  orthopedic,
+  neuro,
+  medicine,
+  appointment,
   register,
   registerCreate,
   login,
   loginCreate,
   logout,
   confirmaton,
+  // signin_signup
 };
