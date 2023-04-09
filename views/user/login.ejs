@@ -22,7 +22,8 @@
   <link rel="stylesheet" href="assets/css/slick.css" />
   <link rel="stylesheet" href="assets/css/nice-select.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
-
+  <link rel="stylesheet" href="assets/css/signin_signup.css">
+   
   <title>Login page</title>
 </head>
 
@@ -31,7 +32,7 @@
       <%-include('../common/header2')%>
     </header> -->
 
-  <div class="container mt-lg-5">
+  <!-- <div class="container mt-lg-5">
     <div class="card border-primary mb-3" style="max-width: 50rem">
       <div class="card-header">
         <p><strong>Login</strong></p>
@@ -63,7 +64,155 @@
                 </form>
       </div>
     </div>
+  </div> -->
+
+  <div class="container mt-50">
+    <div class="contain" id="mainBody">
+      <div class="forms">
+        
+        <div class="form login">
+          <span class="title">Login</span>
+          <%if(message1.length>0){%>
+            <div class="alert alert-success" role="alert">
+              <%=message1%>
+            </div>
+            <%}%>
+              <%if(message2.length>0){%>
+                <div class="alert alert-danger" role="alert">
+                  <%=message2%>
+                </div>
+                <%}%>
+          <form action="/login/create" method="post">
+            <div class="input-field">
+              <input type="text" name="email" placeholder="Enter your email" required>
+              <!-- <i class="uil uil-envelope icon"></i> -->
+            </div>
+            <div class="input-field">
+              <input type="password" name="password" class="password" placeholder="Enter your password" required>
+              <!-- <i class="uil uil-lock icon"></i> -->
+              <!-- <i class="uil uil-eye-slash showHidePw"></i> -->
+            </div>
+
+            <div class="checkbox-text">
+              <div class="checkbox-content">
+                <input type="checkbox" name="remember_me" id="logCheck">
+                <label for="logCheck" class="text">Remember me</label>
+              </div>
+
+              <!-- <a href="#" /class="text">Forgot password?</a> -->
+            </div>
+
+            <div class="input-field button">
+              <input type="submit" value="Login">
+            </div>
+          </form>
+
+          <div class="login-signup">
+            <span class="text">Not a member?
+              <a href="/register" class="text signup-link">Signup Now</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+
+
+  <footer>
+
+    <!--  Footer Start-->
+
+
+    <div class="footer-area section-bg" data-background="assets/img/gallery/footer_bg.jpg">
+        <div class="container">
+            <div class="footer-top footer-padding">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-8">
+                        <div class="single-footer-caption mb-50">
+                            <!-- logo -->
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>About Us</h4>
+                                <div class="footer-pera">
+                                    <p class="info1">Lorem igpsum doldfor sit amet, adipiscing elit, sed
+                                        do eiusmod
+                                        tempor cergelit rgh. </p>
+                                    <p class="info1">Lorem ipsum dolor sit amet, adipiscing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-number mb-50">
+                                <h4><span>+564 </span>7885 3222</h4>
+                                <p>youremail@gmail.com</p>
+                            </div>
+                            <!-- Form -->
+                            <div class="footer-form">
+                                <div id="mc_embed_signup">
+                                    <form target="_blank"
+                                        action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                        method="get" class="subscribe_form relative mail_part" novalidate="true">
+                                        <input type="email" name="EMAIL" id="newsletter-form-email"
+                                            placeholder=" Email Address " class="placeholder hide-on-focus"
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Your email address'">
+                                        <div class="form-icon">
+                                            <button type="submit" name="submit" id="newsletter-submit"
+                                                class="email_icon newsletter-submit button-contactForm">
+                                                Send
+                                            </button>
+                                        </div>
+                                        <div class="mt-10 info"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="footer-copy-right">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights
+                                reserved |
+                                This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4">
+                        <!-- Footer Social -->
+                        <div class="footer-social f-right">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End-->
+</footer>
+<!-- Scroll Up -->
+<div id="back-top">
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+
 
   <!-- Optional JavaScript; choose one of the two! -->
 
@@ -110,6 +259,47 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
     -->
+
+    <script>
+
+      const contain = document.querySelector(".contain"),
+          pwShowHide = document.querySelectorAll(".showHidePw"),
+          pwFields = document.querySelectorAll(".password"),
+          signUp = document.querySelector(".signup-link"),
+          login = document.querySelector(".login-link");
+
+      //   js code to show/hide password and change icon
+      pwShowHide.forEach(eyeIcon => {
+          eyeIcon.addEventListener("click", () => {
+              pwFields.forEach(pwField => {
+                  if (pwField.type === "password") {
+                      pwField.type = "text";
+
+                      pwShowHide.forEach(icon => {
+                          icon.classList.replace("uil-eye-slash", "uil-eye");
+                      })
+                  } else {
+                      pwField.type = "password";
+
+                      pwShowHide.forEach(icon => {
+                          icon.classList.replace("uil-eye", "uil-eye-slash");
+                      })
+                  }
+              })
+          })
+      })
+
+      // js code to appear signup and login form
+      signUp.addEventListener("click", () => {
+          contain.classList.add("active");
+      });
+      login.addEventListener("click", () => {
+          contain.classList.remove("active");
+      });
+
+
+
+  </script>
 </body>
 
 </html>
