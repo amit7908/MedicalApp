@@ -7,10 +7,6 @@
     <title> Medical HTML-5 Template </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-    <base href="/">
-
- 
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
@@ -31,6 +27,8 @@
 </head>
 
 <body>
+
+
     <!-- ? Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -46,147 +44,61 @@
     <header>
         <%-include('../common/header2')%>
     </header>
- 
+
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+
+
     <main>
-        <!--? Hero Start -->
-        <div class="slider-area2">
-            <div class="slider-height2 d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="hero-cap hero-cap2 text-center">
-                                <h2>Departments</h2>
-                            </div>
+
+        <!--? Team Start -->
+        <div class="team-area section-padding30">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-tittle text-center mb-100">
+                            <span>Our Doctors</span>
+                            <h2>Dentistry Specialist</h2>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <%for(var doctor of doctorData){%>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                            <div class="single-team mb-30">
+                                <div class="team-img">
+                                    <img src="doctorPhotos/<%=doctor.image%>" alt="">
+                                </div>
+                                <div class="team-caption">
+                                    <h3><a href="#"><%=doctor.docName%></a></h3> <!--name of the doctor experience -->
+                                    <span class="itembox" data-item="ent"><%=doctor.department%></span><!-- catagory of doctor-->
+                                    <h4 style="font-weight: bold;">QualiFication : <%=doctor.qualiFication%></h4>
+                                    <p></p>
+                                    <h4 style="font-weight: bold;">Experience : <%=doctor.experience%></h4>
+                                    <p></p>
+                                    <h4 style="font-weight: bold;">age : <%=doctor.age%></h4>
+                                    <p></p>
+                                    <button class="btn btn-success"> <a href="/appointment_form">Appointment</a>   <i
+                                            class="ti-arrow-right"></i></button>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
                 </div>
             </div>
         </div>
-        <!-- Hero End -->
-        <!--? department_area_start  -->
-        <div class="department_area section-padding2">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center mb-100">
-                            <span>Our Departments</span>
-                            <h2>Our Medical Services</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="depart_ment_tab mb-30">
-                            <!-- Tabs Buttons -->
-                            <ul class="nav" id="myTab" role="tablist">
+        <!-- Team End -->
 
-                                <li class="">
-                                    <a class="nav-link" 
-                                        href="/doctor/department/Dentist" 
-                                         data-category="Dentist">
-                       
-
-                                        <i class="flaticon-teeth"></i>
-                                        <h4>Dentistry</h4>
-                                    </a>
-                                </li>
-
-                                <li class="">
-                                    <a class="nav-link" 
-                                        href="/doctor/department/Cardiologist"  data-category="Cardiologist">
-
-
-                                        <i class="flaticon-cardiovascular"></i>
-                                        <h4>Cardiology</h4>
-                                    </a>
-                                </li>
-                                <li >
-                                    <a class="nav-link"  href="/doctor/department/ENT"
-                                         data-category="ENT">
-                                        <i class="flaticon-ear"></i>
-                                        <h4>ENT Specialists</h4>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a class="nav-link" 
-                                        href="/doctor/department/Orthopedic"  data-category="Cardiologist">
-
-
-                                        <i class="flaticon-cardiovascular"></i>
-                                        <h4>Orthopedic</h4>
-                                    </a>
-                                </li>
-
-                                
-
-                                <li>
-                                    <a class="nav-link"
-                                        href="/doctor/department/Neurologist"  data-category="Neurologist">
-                                        <i class="flaticon-cell"></i>
-                                        <h4>Neurology</h4>
-                                </li>
-                                <li>
-                                    <a class="nav-link"
-                                        href="/doctor/department/Medicine"  data-category="Neurologist">
-                                        <i class="flaticon-cell"></i>
-                                        <h4>Medicine</h4>
-                                </li>
-
-                                
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-area section-padding30">
-                    <div class="container" id="doctorContainer">
-                        <!-- Section Tittle -->
-
-                        <div class="row">
-                            <%if(doctordata.length>0){%>
-                                <%for(var doctor of doctordata){%>
-                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
-                                        <div class="single-team mb-30">
-                                            <div class="team-img">
-                                                <img src="doctorPhotos/<%=doctor.image%>" alt="">
-                                            </div>
-                                            <div class="team-caption">
-                                                <h3><a href="#">
-                                                        <%=doctor.docName%>
-                                                    </a></h3> <!--name of the doctor experience -->
-                                                <span class="itembox" data-item="ent">
-                                                    <%=doctor.department%>
-                                                </span><!-- catagory of doctor-->
-                                                <h4 style="font-weight: bold;">QualiFication : <%=doctor.qualiFication%>
-                                                </h4>
-                                                <p></p>
-                                                <h4 style="font-weight: bold;">Experience : <%=doctor.experience%>
-                                                </h4>
-                                                <p></p>
-                                                <h4 style="font-weight: bold;">age : <%=doctor.age%>
-                                                </h4>
-                                                <p></p>
-                                                <button class="btn btn-success" ;">Appointment <i
-                                                        class="ti-arrow-right"></i></button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <%}%>
-                                        <%}else{%>
-                                            <h1>No doctor found</h1>
-                                            <%}%>
-                        </div>
-                    </div>
-                </div>
-
-            </div> 
-        </div>
-
-                <!-- department area_end  -->
     </main>
->>>>>>> ed7c38147cc6d1c55105034cf960929b5d355d6b
+
+
     <footer>
         <!--? Footer Start-->
         <div class="footer-area section-bg" data-background="assets/img/gallery/footer_bg.jpg">
@@ -206,8 +118,8 @@
                                 <div class="footer-tittle">
                                     <h4>About Us</h4>
                                     <div class="footer-pera">
-                                        <p class="info1">Lorem igpsum doldfor sit amet, adipiscing elit, sed do eiusmod
-                                            tempor cergelit rgh. </p>
+                                        <p class="info1">Lorem igpsum doldfor sit amet, adipiscing elit, sed do
+                                            eiusmod tempor cergelit rgh. </p>
                                         <p class="info1">Lorem ipsum dolor sit amet, adipiscing elit.</p>
                                     </div>
                                 </div>
@@ -275,42 +187,6 @@
     <div id="back-top">
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
- 
-    <!--ajax -->
-
-    
-
-    <!-- <script>
-
-        $(document).ready(function () {
-            // When a tab is clicked
-            $('a.nav-link').on('click', function (e) {
-                e.preventDefault();
-                // Get the category of the clicked tab
-                var category = $(this).data('category');
-                // Fetch the doctors for that category using an AJAX request
-                $.ajax({
-                    type: 'GET',
-
-                    url: '/department'+category,
-
-                    url: '/department',
-
-                    data: { category: category },
-                    success: function (doctordata) {
-                        // Render the doctors using EJS
-                        var template = $('./user/department').html();
-                        var html = ejs.render(template, { doctordata: doctordata });
-                        $('#doctorContainer').html(html);
-                    },
-                })
-            })
-
-             })</script> -->
-
-            
-
- 
 
     <!-- JS here -->
 
@@ -328,13 +204,6 @@
     <!-- One Page, Animated-HeadLin -->
     <script src="./assets/js/wow.min.js"></script>
     <script src="./assets/js/animated.headline.js"></script>
-    <script src="./assets/js/jquery.magnific-popup.js"></script>
-
-    <!-- Date Picker -->
-    <script src="./assets/js/gijgo.min.js"></script>
-    <!-- Nice-select, sticky -->
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery.sticky.js"></script>
 
     <!-- counter , waypoint -->
     <script src="./assets/js/jquery.counterup.min.js"></script>
@@ -350,9 +219,7 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
- 
- </body>
- </html>
- 
 
- 
+</body>
+
+</html>

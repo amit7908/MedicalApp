@@ -96,7 +96,7 @@
 		</div>
 
         <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="border-color: aqua;">
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="border-color: aqua;">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -130,20 +130,12 @@
                     <label for="exampleInputEmail1" class="form-label">Department</label>
                     <input type="text" class="form-control" name="department" id="exampleInputEmail1" aria-describedby="emailHelp">
                   </div> -->
-
-                  <div class="mb-3">
+                  <!--add select to depatment from index.ejs-->
+                  <!-- <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Department</label>
                     <input type="text" class="form-control" name="department" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Experience</label>
-                    <input type="text" class="form-control" name="experience" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  </div>
-
+                  </div> -->
                   <label for="selectDepartment" class="mr-10">Select Department</label>
-                  <div class="mb-3">
-                    
                                         <select name="department" id="select" class="selectpicker" required  title="Choose one of the following...">
                                             <option value="Dentist">Dentistry</option>
                                             <option value="Cardiologist">Cardiology</option>
@@ -152,8 +144,11 @@
                                             <option value="Neurologist">Neurology</option>
                                             <option value="Medicine">Medicine</option>
                                         </select>
-                  </div>
 
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Experience</label>
+                    <input type="text" class="form-control" name="experience" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Image</label>
                     <input type="file" class="form-control" name="image" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -164,10 +159,10 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </form>
-        </div>
+         </div>
         
-      </div>
-    </div>
+       </div>
+     </div>
   </div>
 
     <script src="/admin/js/jquery.min.js"></script>
