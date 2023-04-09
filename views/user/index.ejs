@@ -301,61 +301,28 @@
                 </div>
             </div>
             <div class="row">
-                <!-- single Tem -->
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
-                    <div class="single-team mb-30">
-                        <div class="team-img">
-                            <img src="assets/img/gallery/team2.png" alt="">
-                        </div>
-                        <div class="team-caption">
-                            <h3><a href="#">Alvin Maxwell</a></h3>
-                            <span>Creative UI Designer</span>
-                            <!-- Team social -->
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <%for(var doctor of doctorData){%>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-30">
+                            <div class="team-img">
+                                <img src="doctorPhotos/<%=doctor.image%>" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <h3><a href="#"><%=doctor.docName%></a></h3> <!--name of the doctor experience -->
+                                <span class="itembox" data-item="ent"><%=doctor.department%></span><!-- catagory of doctor-->
+                                <h4 style="font-weight: bold;">QualiFication : <%=doctor.qualiFication%></h4>
+                                <p></p>
+                                <h4 style="font-weight: bold;">Experience : <%=doctor.experience%></h4>
+                                <p></p>
+                                <h4 style="font-weight: bold;">age : <%=doctor.age%></h4>
+                                <p></p>
+                                <button class="btn btn-success" ;">Appointment <i
+                                        class="ti-arrow-right"></i></button>
+
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
-                    <div class="single-team mb-30">
-                        <div class="team-img">
-                            <img src="assets/img/gallery/team3.png" alt="">
-                        </div>
-                        <div class="team-caption">
-                            <h3><a href="#">Maria Smith</a></h3>
-                            <span>Agency Manager</span>
-                            <!-- Team social -->
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
-                    <div class="single-team mb-30">
-                        <div class="team-img">
-                            <img src="assets/img/gallery/team1.png" alt="">
-                        </div>
-                        <div class="team-caption">
-                            <h3><a href="#">Angela Doe</a></h3>
-                            <span>Designer</span>
-                            <!-- Team social -->
-                            <div class="team-social">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <%}%>
             </div>
         </div>
     </div>
@@ -377,42 +344,62 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <!--End Section Tittle  -->
-                        <form id="contact-form" action="#" method="POST">
+                        <form id="contact-form" action="/admin/addAppointment" method="POST">
+                            <%if(message1.length>0){%>
+                                <div class="alert alert-success" role="alert">
+                                  <%=message1%>
+                                </div>
+                                <%}%>
+                                  <%if(message2.length>0){%>
+                                    <div class="alert alert-danger" role="alert">
+                                      <%=message2%>
+                                    </div>
+                                    <%}%>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-box user-icon mb-30">
-                                        <input type="text" name="name" placeholder="Name">
+                                        <input type="text" name="name" required placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-box email-icon mb-30">
-                                        <input type="text" name="email" placeholder="Phone">
+                                        <input type="text" name="phone" required placeholder="Phone">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 mb-30">
-                                    <div class="select-itms">
-                                        <select name="select" id="select2">
-                                            <option value="">Health Law</option>
-                                            <option value="">saiful islam</option>
-                                            <option value="">Arafath Miya</option>
-                                            <option value="">Shakil Miya</option>
-                                            <option value="">Tamim Sharker</option>
+                                    <div class="">
+                                        <label for="selectDepartment" class="mr-10">Select Department</label>
+                                        <select name="department" id="select" class="selectpicker" required  title="Choose one of the following...">
+                                            <option value="Dentist">Dentistry</option>
+                                            <option value="Cardiologist">Cardiology</option>
+                                            <option value="ENT">ENT Specialist</option>
+                                            <option value="Orthopedic">Orthopedic</option>
+                                            <option value="Neurologist">Neurology</option>
+                                            <option value="Medicine">Medicine</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-box subject-icon mb-30">
-                                        <input type="Email" name="subject" placeholder="Email">
+                                        <input type="email" name="email" required placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-box message-icon mb-65">
-                                        <textarea name="message" id="message" placeholder="Message"></textarea>
+                                        <textarea name="message" id="message" required placeholder="Message"></textarea>
                                     </div>
+                                    <%if(loginData.isLogedin){%>
                                     <div class="submit-info">
                                         <button class="btn" type="submit">Submit Now <i class="ti-arrow-right"></i> </button>
                                     </div>
+                                    <%}else{%>
+                                        <div class="">
+                                            <button class="btn about-btn2" type="button">Submit Now <i class="ti-arrow-right"></i> </button>
+                                        </div>
+                                        <h3>You have to login before booking an appointment</h3>
+                                        <%}%>
                                 </div>
                             </div>
                         </form>
@@ -477,12 +464,12 @@
     </div>
     <!-- gallery Products End -->
     <!--? Blog start -->
-    <div class="home_blog-area section-padding30">
+    <!-- <div class="home_blog-area section-padding30">
         <div class="container">
             <div class="row justify-content-sm-center">
-                <div class="cl-xl-7 col-lg-8 col-md-10">
+                <div class="cl-xl-7 col-lg-8 col-md-10"> -->
                     <!-- Section Tittle -->
-                    <div class="section-tittle text-center mb-70">
+                    <!-- <div class="section-tittle text-center mb-70">
                         <span>Oure recent news</span>
                         <h2>OurNews From Blog</h2>
                     </div> 
@@ -536,7 +523,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Blog End -->
     </main>
     <footer>
