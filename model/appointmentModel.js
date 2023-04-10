@@ -24,6 +24,7 @@ const appointmentSchema = new schema({
         type:String,
         required:true
     },
+    
 },{
     timestamps:true
 })

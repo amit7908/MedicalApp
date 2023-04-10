@@ -125,18 +125,14 @@
                     <label for="exampleInputEmail1" class="form-label">QualiFication</label>
                     <input type="text" class="form-control" name="qualiFication" id="exampleInputEmail1" aria-describedby="emailHelp">
                   </div>
-
-                  <!-- <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Department</label>
-                    <input type="text" class="form-control" name="department" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  </div> -->
-                  <!--add select to depatment from index.ejs-->
-                  <!-- <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Department</label>
-                    <input type="text" class="form-control" name="department" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  </div> -->
-                  <label for="selectDepartment" class="mr-10">Select Department</label>
-                                        <select name="department" id="select" class="selectpicker" required  title="Choose one of the following...">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Experience</label>
+                    <input type="text" class="form-control" name="experience" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  
+                                        <div class="mb-3">
+                                          <label for="selectDepartment" class="mr-10">Select Department : </label>
+                                          <select name="department" id="select" class="selectpicker" required  title="Choose one of the following...">
                                             <option value="Dentist">Dentistry</option>
                                             <option value="Cardiologist">Cardiology</option>
                                             <option value="ENT">ENT Specialist</option>
@@ -144,11 +140,9 @@
                                             <option value="Neurologist">Neurology</option>
                                             <option value="Medicine">Medicine</option>
                                         </select>
+                                        </div>
 
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Experience</label>
-                    <input type="text" class="form-control" name="experience" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  </div>
+                  
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Image</label>
                     <input type="file" class="form-control" name="image" id="exampleInputEmail1" aria-describedby="emailHelp">

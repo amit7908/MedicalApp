@@ -7,14 +7,20 @@ const utils = require("../utils/utils");
 const tokenModel = require("../model/tokenModel");
 const crypto = require("crypto");
 const { log } = require("console");
+const About = require("../model/aboutModel");
+const camp = require("../model/CampgalleryModel")
+
 
 
 const home = async(req, res) => {
   const loginData = {};
   const doctorData = await Doctor.find().limit(3)
+  const campdata = await camp.find();
+  const testimonidata = await About.find();
   if(req.cookies.isLogedin){
     loginData.isLogedin = req.cookies.isLogedin || undefined;
     loginData.email = req.cookies.email || undefined;
+    loginData.name = req.cookies.name || undefined;
   }
 
   res.render("./user/index",{
@@ -22,22 +28,36 @@ const home = async(req, res) => {
     data:User.find(),
     loginData:loginData,
     doctorData:doctorData,
+    campdata:campdata,
+    testimonidata:testimonidata,
     message1: req.flash("message1"),
     message2: req.flash("message2"),
 })
 };
 
-const about = (req, res) => {
+const about=async(req,res)=>{
   const loginData = {};
-  if (req.cookies.isLogedin) {
+  const testimonidata = await About.find()
+  const campdata = await camp.find()
+  const docdata = await Doctor .aggregate(
+    [{ $limit : 3}]
+  )
+  if(req.cookies.isLogedin){
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.email = req.cookies.email || undefined;
+    loginData.name = req.cookies.name || undefined;
   }
-  res.render("./user/about", {
-    title: "about page",
-    data: User.find(),
-    loginData: loginData
+  res.render("./user/about",{
+    title:"about page",
+    data:User.find(),
+    loginData:loginData,
+    testimonidata:testimonidata,
+    campdata:campdata,
+    docdata:docdata,
+    message1: req.flash("message1"),
+    message2: req.flash("message2"),
   })
-
+  
 };
 
 
@@ -47,6 +67,7 @@ const doctor = async (req, res) => {
   if (req.cookies.isLogedin) {
 
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
   }
   res.render("./user/doctor", {
     title: "doctor page",
@@ -58,35 +79,14 @@ const doctor = async (req, res) => {
 };
 
 
-// const blog = (req, res) => {
-//   const loginData = {};
-//   if (req.cookies.isLogedin) {
-//     loginData.isLogedin = req.cookies.isLogedin || undefined;
-//   }
-//   res.render('./user/blog', {
-//     title: "blog page",
-//     data: User.find(),
-//     loginData: loginData
-//   })
-// }
 
-// const blog_detail = (req, res) => {
-//   const loginData = {};
-//   if (req.cookies.isLogedin) {
-//     loginData.isLogedin = req.cookies.isLogedin || undefined;
-//   }
-//   res.render('./user/blog_detail', {
-//     title: "blog_detail page",
-//     data: User.find(),
-//     loginData: loginData
-//   })
-// }
 
 
 const contact = (req, res) => {
   const loginData = {};
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
   }
   res.render('./user/contact', {
     tittle: "contact page",
@@ -95,17 +95,7 @@ const contact = (req, res) => {
   })
 }
 
-// const signin_signup = (req, res) => {
-//   const loginData = {};
-//   if (req.cookies.isLogedin) {
-//     loginData.isLogedin = req.cookies.isLogedin || undefined;
-//   }
-//   res.render('./user/signin_signup', {
-//     tittle: "signin_signup page",
-//     data: User.find(),
-//     loginData: loginData
-//   })
-// }
+
 
 const dentistry = async(req, res) => {
   const loginData = {};
@@ -118,6 +108,7 @@ const dentistry = async(req, res) => {
   ])
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
   }
   res.render('./user/dentistry', {
     tittle: "dentistry page",
@@ -137,6 +128,7 @@ const cardiology = async(req, res) => {
     },])
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
   }
   res.render('./user/cardiology', {
     tittle: "cardiology page",
@@ -156,6 +148,7 @@ const ent_specialist = async(req, res) => {
     },])
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
   }
   res.render('./user/ent', {
     tittle: "ent_specialist page",
@@ -175,6 +168,7 @@ const orthopedic = async(req, res) => {
     },])
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
   }
   res.render('./user/orthopedic', {
     tittle: "orthopedic page",
@@ -194,6 +188,9 @@ const neuro = async(req, res) => {
     },])
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
+    
+
   }
   res.render('./user/neuroanatomy', {
     tittle: "neuroanatomy page",
@@ -213,6 +210,8 @@ const medicine = async(req, res) => {
     },])
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
+
   }
   res.render('./user/medicine', {
     tittle: "medicine page",
@@ -227,6 +226,8 @@ const appointment = (req, res) => {
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
     loginData.email = req.cookies.email || undefined;
+    loginData.name = req.cookies.name || undefined;
+
   }
   res.render('./user/appointment_form', {
     tittle: "appointment page",
@@ -249,6 +250,8 @@ const department = async (req, res) => {
   ])
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
+
   }
   res.render("./user/doc_department", {
     data: req.user,
@@ -262,6 +265,8 @@ const register = (req, res) => {
   const loginData = {};
   if (req.cookies.isLogedin) {
     loginData.isLogedin = req.cookies.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
+
   }
   res.render("./user/register", {
     data: User.find(),
@@ -362,6 +367,8 @@ const login = (req, res) => {
     loginData.email = req.cookie.email || undefined;
     loginData.password = req.cookie.password || undefined;
     loginData.isLogedin = req.cookie.isLogedin || undefined;
+    loginData.name = req.cookies.name || undefined;
+
   }
 
   res.render("./user/login", {
@@ -375,32 +382,38 @@ const loginCreate = (req, res) => {
   User.findOne({ email: req.body.email })
     .then((data) => {
       if (data) {
-        if (data.isVerified) {
-          const hashPassword = data.password;
-          if (bcrypt.compareSync(req.body.password, hashPassword)) {
-            const token = jwt.sign(
-              {
-                id: data._id,
-                name: data.name,
-              },
-              config.secrect_key,
-              { expiresIn: "1d" }
-            );
-            res.cookie("userToken", token);
-            res.cookie("isLogedin", "true")
-            if (req.body.rememberme) {
-              res.cookie("email", req.body.email);
-              res.cookie("password", req.body.password);
+        if(data.status){
+          if (data.isVerified) {
+            const hashPassword = data.password;
+            if (bcrypt.compareSync(req.body.password, hashPassword)) {
+              const token = jwt.sign(
+                {
+                  id: data._id,
+                  name: data.name,
+                },
+                config.secrect_key,
+                { expiresIn: "1d" }
+              );
+              res.cookie("userToken", token);
+              res.cookie("isLogedin", "true")
+              res.cookie("name",data.name)
+              if (req.body.rememberme) {
+                res.cookie("email", req.body.email);
+                res.cookie("password", req.body.password);
+              }
+              console.log("login successfull", data);
+              res.redirect("/");
+            } else {
+              req.flash("message2", "Incorrect email or password..!");
+              res.redirect("/login");
             }
-            console.log("login successfull", data);
-            res.redirect("/");
           } else {
-            req.flash("message2", "Incorrect email or password..!");
+            req.flash("message2", "User not verified");
             res.redirect("/login");
           }
-        } else {
-          req.flash("message2", "User not verified");
-          res.redirect("/login");
+        }else{
+          req.flash("message2","Dear user you are blocked")
+          res.redirect("/login")
         }
       } else {
         req.flash(

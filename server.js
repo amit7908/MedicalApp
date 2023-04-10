@@ -12,6 +12,8 @@ const nodeNotifier = require("node-notifier");
 const methodOverride = require('method-override');
 require("dotenv").config();
 
+const multer=require('multer')
+
 const app = express();
 // app.use(require('connect').bodyParser());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -30,8 +32,36 @@ app.use(session({
     saveUninitialized:false
 }))
 
+app.use('/upload',express.static(path.join(__dirname,'upload')));
+app.use(express.urlencoded({extended:true}))
+app.use(express.static(path.join(__dirname, 'public')))
+
+const fileStorage=multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null,'upload')
+    },
+    filename:(req,file,cb)=>{
+        cb(null,file.originalname)
+    }
+})
+
+const fileFilter=(req,file,cb)=>{
+    if(file.mimetype.includes("png") ||
+    file.mimetype.includes("jpg") ||
+    file.mimetype.includes("jpeg")){
+        cb(null,true)
+    }
+    else{
+        cb(null,false)
+    }    
+} 
+
+app.use(multer({storage:fileStorage,fileFilter:fileFilter,limits:{fieldSize:1024*1024*5}}).single('image'))
+
+
 app.set('view engine','ejs');
 app.set("views","views");
+
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,"public")))
 

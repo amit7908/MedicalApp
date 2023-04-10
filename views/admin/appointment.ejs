@@ -26,6 +26,7 @@
                    
                     <tr>
                         <th scope="col">Sl-No</th>
+                        <th scope="col">Apply time</th>
                         <th scope="col">Appilication-Id</th>
                         <th scope="col">Department</th>
                         <th scope="col">Name</th>
@@ -45,6 +46,9 @@
                             <td>
                                 
                                     <%= (i++)%>  
+                            </td>
+                            <td>
+                                <%=result1.createdAt%>
                             </td>
                             <td>
                                 <%=((result1._id.toString()).slice(-6))%>

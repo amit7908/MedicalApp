@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Single Slider -->
+
                 
             </div>
         </div>
@@ -108,9 +108,7 @@
                                 <a href="/appointment_form" class="btn about-btn">Appointment <i
                                         class="ti-arrow-right"></i></a>
                             </div>
-                            <!-- <div class="about-btn1 mb-30">
-                                <a href="/contact" class="btn about-btn2">Emargency 1 <i class="ti-arrow-right"></i></a>
-                            </div> -->
+                           
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
@@ -203,52 +201,25 @@
                     </div>
                 </div>
                 <div class="row">
+                    <%for(var about1 of campdata){%>
                     <!-- Left -->
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
+                       
                         <div class="row">
+                            
                             <div class="col-lg-12">
                                 <div class="single-gallery mb-30">
-                                    <div class="gallery-img big-img"
-                                        style="background-image: url(assets/img/gallery/gallery1.png);"></div>
+                                     <div class="gallery-img small-img">
+                                     <img src="<%= about1.image%>" alt="image" width="100%" height="100%" >
+                                </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-gallery mb-30">
-                                    <div class="gallery-img small-img"
-                                        style="background-image: url(assets/img/gallery/gallery2.png);"></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-gallery mb-30">
-                                    <div class="gallery-img small-img"
-                                        style="background-image: url(assets/img/gallery/gallery3.png);"></div>
-                                </div>
-                            </div>
+                            
                         </div>
+                       
                     </div>
-                    <!-- Right -->
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-gallery mb-30">
-                                    <div class="gallery-img small-img"
-                                        style="background-image: url(assets/img/gallery/gallery4.png);"></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="single-gallery mb-30">
-                                    <div class="gallery-img small-img"
-                                        style="background-image: url(assets/img/gallery/gallery5.png);"></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="single-gallery mb-30">
-                                    <div class="gallery-img big-img"
-                                        style="background-image: url(assets/img/gallery/gallery6.png);"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
+                    <%}%>
                 </div>
             </div>
         </div>
@@ -259,29 +230,33 @@
             <div class="starups">
                 <!--? Testimonial Start -->
                 <div class="h1-testimonial-active">
-                    <!-- Single Testimonial -->
-                    <div class="single-testimonial text-center">
-                        <!-- Testimonial Content -->
-                        <div class="testimonial-caption ">
-                            <div class="testimonial-top-cap">
-                                <img src="assets/img/gallery/testimonial.png" alt="">
-                                <p>“I am at an age where I just want to be fit and healthy our bodies are our
-                                    responsibility! So start caring for your body and it will care for you. Eat clean it
-                                    will care for yout hard.”</p>
-                            </div>
-                            <!-- founder -->
-                            <div class="testimonial-founder d-flex align-items-center justify-content-center">
-                                <div class="founder-img">
-                                    <img src="assets/img/gallery/Homepage_testi.png" alt="">
-                                </div>
-                                <div class="founder-text">
-                                    <span>Margaret Lawson</span>
-                                    <p>Chif Photographer</p>
-                                </div>
+            
+                <%for(var about of testimonidata){%>
+                <!-- Single Testimonial -->
+                <div class="single-testimonial text-center">
+                    <!-- Testimonial Content -->
+                    <div class="testimonial-caption ">
+                        <div class="testimonial-top-cap">
+                            <img src="assets/img/gallery/testimonial.png" alt="">
+                            <p><%=about.aboutmessage%></p>
+                        </div>
+                        <!-- founder -->
+                        <div class="testimonial-founder d-flex align-items-center justify-content-center">
+                            <!-- <div class="founder-img">
+                                <img src="<%= about.image %>" alt="image" width="50px" height="50px" >
+                            </div> -->
+                            <div class="avatar" style="height: 100px; width: 100px; border-radius: 50%; overflow: hidden;">
+                                <div class="avatar-image" ><img src="<%= about.image %>" alt="image" width="100%" height="100%" ></div>
+                              </div>
+                            <div class="founder-text">
+                                <span><%=about.docname%></span>
+                                <p><%=about.department%></p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <%}%>
+            </div>
                 <!-- Testimonial End -->
             </div>
             <!--Right Contents  -->
@@ -337,7 +312,7 @@
         </div>
 
         <div>
-            <a href="/doctor" class="btn hero-btn mb-100 " data-animation="fadeInLeft" data-delay="0.5s">See Meore
+            <a href="/doctor" class="btn hero-btn mb-150 ml-150" data-animation="fadeInLeft" data-delay="0.5s" style="position: relative; width: 80%; align-items: center; justify-content: center;">See Meore
                 <i class="ti-arrow-right"></i></a>
         </div>
         <!-- Team End -->
@@ -378,7 +353,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 mb-30">
-                                    <div class="">
+                                    <div class="select-itms">
                                         <label for="selectDepartment" class="mr-10">Select Department</label>
                                         <select name="department" id="select" class="selectpicker" required  title="Choose one of the following...">
                                             <option value="Dentist">Dentistry</option>
